@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaClient } from "@prisma/client"
 import { comparePassword } from "./hash"
+import { SessionStrategy } from "next-auth"
 
 const prisma = new PrismaClient()
 
@@ -25,6 +26,6 @@ export const authOptions = {
       },
     }),
   ],
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt" as SessionStrategy },
   secret: process.env.NEXTAUTH_SECRET,
 }
